@@ -9,7 +9,7 @@
 import UIKit
 
 enum CurrentLight {
-    case red, yellow, green, off
+    case off, red, yellow, green
 }
 
 class ViewController: UIViewController {
@@ -33,9 +33,9 @@ class ViewController: UIViewController {
         yellowLight.layer.cornerRadius = redLight.bounds.size.width / 2
         greenLight.layer.cornerRadius = redLight.bounds.size.width / 2
         
-        redLight.backgroundColor = UIColor.red.withAlphaComponent(lightIsOff)
-        yellowLight.backgroundColor = UIColor.yellow.withAlphaComponent(lightIsOff)
-        greenLight.backgroundColor = UIColor.green.withAlphaComponent(lightIsOff)
+        redLight.alpha = lightIsOff
+        yellowLight.alpha = lightIsOff
+        greenLight.alpha = lightIsOff
     }
 
     @IBAction func startButtonPressed(_ sender: Any) {
@@ -43,20 +43,21 @@ class ViewController: UIViewController {
         startButton.setTitle("NEXT", for: .normal)
         
         switch currentLight {
+            
+        case .off:
+            redLight.alpha = lightIsOn
+            currentLight = .red
         case .red:
-            redLight.backgroundColor? = UIColor.red.withAlphaComponent(lightIsOff)
-            yellowLight.backgroundColor = UIColor.yellow.withAlphaComponent(lightIsOn)
+            redLight.alpha = lightIsOff
+            yellowLight.alpha = lightIsOn
             currentLight = .yellow
         case .yellow:
-            yellowLight.backgroundColor = UIColor.yellow.withAlphaComponent(lightIsOff)
-            greenLight.backgroundColor = UIColor.green.withAlphaComponent(lightIsOn)
+            yellowLight.alpha = lightIsOff
+            greenLight.alpha = lightIsOn
             currentLight = .green
         case .green:
-            redLight.backgroundColor = UIColor.red.withAlphaComponent(lightIsOn)
-            greenLight.backgroundColor = UIColor.green.withAlphaComponent(lightIsOff)
-            currentLight = .red
-        case .off:
-            redLight.backgroundColor? = UIColor.red.withAlphaComponent(lightIsOn)
+            redLight.alpha = lightIsOn
+            greenLight.alpha = lightIsOff
             currentLight = .red
         }
     }
