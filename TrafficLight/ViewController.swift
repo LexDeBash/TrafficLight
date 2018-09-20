@@ -14,23 +14,24 @@ enum CurrentLight {
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var redLight: UIView!
-    @IBOutlet weak var yellowLight: UIView!
-    @IBOutlet weak var greenLight: UIView!
-    @IBOutlet weak var startButton: UIButton!
+    @IBOutlet var redLight: UIView!
+    @IBOutlet var yellowLight: UIView!
+    @IBOutlet var greenLight: UIView!
+    @IBOutlet var startButton: UIButton!
     
-    var currentLight = CurrentLight.off
+    private var currentLight = CurrentLight.off
     
-    let lightIsOn: CGFloat = 1
-    let lightIsOff: CGFloat = 0.3
+    private let lightIsOn: CGFloat = 1
+    private let lightIsOff: CGFloat = 0.3
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        redLight.layer.cornerRadius = 50
-        yellowLight.layer.cornerRadius = 50
-        greenLight.layer.cornerRadius = 50
         startButton.layer.cornerRadius = 10
+        
+        redLight.layer.cornerRadius = redLight.bounds.size.width / 2
+        yellowLight.layer.cornerRadius = redLight.bounds.size.width / 2
+        greenLight.layer.cornerRadius = redLight.bounds.size.width / 2
         
         redLight.backgroundColor = UIColor.red.withAlphaComponent(lightIsOff)
         yellowLight.backgroundColor = UIColor.yellow.withAlphaComponent(lightIsOff)
