@@ -14,16 +14,16 @@ enum CurrentLight {
 
 class ViewController: UIViewController {
     
-    private var currentLight = CurrentLight.red
-    
-    private let lightIsOn: CGFloat = 1
-    private let lightIsOff: CGFloat = 0.3
-    
     @IBOutlet var redLight: UIView!
     @IBOutlet var yellowLight: UIView!
     @IBOutlet var greenLight: UIView!
     
     @IBOutlet var startButton: UIButton!
+    
+    private var currentLight = CurrentLight.red
+    
+    private let lightIsOn: CGFloat = 1
+    private let lightIsOff: CGFloat = 0.3
     
     override func viewDidLoad() {
         super.viewDidLoad()
